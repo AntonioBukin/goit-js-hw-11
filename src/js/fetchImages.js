@@ -1,6 +1,6 @@
 export const fetchImages = async (inputValue, pageNr) => {
   return await fetch(
-    `https://pixabay.com/api/?key=35752584-b09009ceb4c8bb99b03fafcd9=${inputValue}&orientation=horizontal&safesearch=true&image_type=photo&per_page=30&page=${pageNr}`
+    `https://pixabay.com/api/?key=35752584-b09009ceb4c8bb99b03fafcd9&q=${inputValue}&orientation=horizontal&safesearch=true&image_type=photo&per_page=30&page=${pageNr}`
   )
     .then(async response => {
       if (!response.ok) {
