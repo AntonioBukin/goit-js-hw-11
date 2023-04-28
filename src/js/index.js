@@ -29,11 +29,12 @@ btnSearch.addEventListener('click', e => {
           'Sorry, there are no images matching your search query. Please try again.'
         );
       }
-      if (foundDate.total === foundDate.hits.length) {
-        Notiflix.Notify.info(
-          "We're sorry, but you've reached the end of search results."
-        );
-      } else {
+      // if (pageNumber === foundDate.hits.length) {
+      //   Notiflix.Notify.info(
+      //     "We're sorry, but you've reached the end of search results."
+      //   );
+      // }
+      else {
         renderImageList(foundDate.hits);
         Notiflix.Notify.success(
           `Congratulation!We found ${foundDate.totalHits} images`
@@ -55,11 +56,12 @@ btnLoadMore.addEventListener('click', () => {
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
-    if (foundDate.total === foundDate.hits.length) {
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
-    } else {
+    // if (pageNumber === foundDate.hits.length) {
+    //   Notiflix.Notify.info(
+    //     "We're sorry, but you've reached the end of search results."
+    //   );
+    // }
+    else {
       renderImageList(foundDate.hits);
       Notiflix.Notify.success(`Hooray!We found ${foundDate.totalHits} images`);
       btnLoadMore.style.display = 'block';
