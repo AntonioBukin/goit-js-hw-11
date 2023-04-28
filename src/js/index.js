@@ -29,7 +29,7 @@ btnSearch.addEventListener('click', e => {
           'Sorry, there are no images matching your search query. Please try again.'
         );
       }
-      // if (pageNumber === foundDate.hits.length) {
+      // if (foundDate.hits.length <= foundDate.totalHits) {
       //   Notiflix.Notify.info(
       //     "We're sorry, but you've reached the end of search results."
       //   );
@@ -56,7 +56,7 @@ btnLoadMore.addEventListener('click', () => {
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
-    // if (pageNumber === foundDate.hits.length) {
+    // if (foundDate.hits.length <= foundDate.totalHits) {
     //   Notiflix.Notify.info(
     //     "We're sorry, but you've reached the end of search results."
     //   );
