@@ -9,8 +9,10 @@ const gallery = document.querySelector('.gallery');
 const btnLoadMore = document.querySelector('.load-more');
 let gallerySimpleLightbox = new SimpleLightbox('.gallery a');
 
+//за замовчуванням LoadMore - повинен бути схований
 btnLoadMore.style.display = 'none';
 
+//кількість сторінок за замовченням
 let pageNumber = 1;
 
 btnSearch.addEventListener('click', e => {
@@ -19,9 +21,17 @@ btnSearch.addEventListener('click', e => {
   const trimmedValue = input.value.trim();
   if (trimmedValue !== '') {
     fetchImages(trimmedValue, pageNumber).then(foundDate => {
+      console.log('foundDate', foundDate);
+      console.log('foundDate.hits.length', foundDate.hits.length);
+
       if (foundDate.hits.length === 0) {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
+        );
+      }
+      if (foundDate.total === foundDate.hits.length) {
+        Notiflix.Notify.info(
+          "We're sorry, but you've reached the end of search results."
         );
       } else {
         renderImageList(foundDate.hits);
@@ -36,7 +46,7 @@ btnSearch.addEventListener('click', e => {
 });
 
 btnLoadMore.addEventListener('click', () => {
-  pageNumber++;
+  pageNumber += 1;
   const trimmedValue = input.value.trim();
   btnLoadMore.style.display = 'none';
   fetchImages(trimmedValue, pageNumber).then(foundDate => {
@@ -44,11 +54,14 @@ btnLoadMore.addEventListener('click', () => {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+    }
+    if (foundDate.total === foundDate.hits.length) {
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
     } else {
       renderImageList(foundDate.hits);
-      Notiflix.Notify.success(
-        `Congratulation!We found ${foundDate.totalHits} images`
-      );
+      Notiflix.Notify.success(`Hooray!We found ${foundDate.totalHits} images`);
       btnLoadMore.style.display = 'block';
     }
   });
